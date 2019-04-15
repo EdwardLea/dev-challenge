@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ProductSearch = ({ handleChange }) => {
+const ProductSearch = ({products, handleChange }) => {
+
 
   return (
     <div className="columns">
@@ -15,13 +16,12 @@ const ProductSearch = ({ handleChange }) => {
               name="supplier"
               onChange={handleChange}
             >
-              <option> All </option>
-              <option> Board Games </option>
-              <option> Food & Drink </option>
-              <option> Mums </option>
-              <option> Sports </option>
-              <option> Photography </option>
-              <option> Gaming </option>
+              {products
+                .map(product => product.supplier)
+                .filter((product,i) => products.map(product => product.supplier).indexOf(product) === i)
+                .map((product, i) => {
+                  return <option key={i}> {product} </option>
+                })}
             </select>
           </div>
         </div>
@@ -35,13 +35,12 @@ const ProductSearch = ({ handleChange }) => {
               name="product"
               onChange={handleChange}
             >
-              <option> All </option>
-              <option> Board Games </option>
-              <option> Food & Drink </option>
-              <option> Mums </option>
-              <option> Sports </option>
-              <option> Photography </option>
-              <option> Gaming </option>
+              {products
+                .map(product => product.product)
+                .filter((product,i) => products.map(product => product.product).indexOf(product) === i)
+                .map((product, i) => {
+                  return <option key={i}> {product} </option>
+                })}
             </select>
           </div>
         </div>

@@ -20,16 +20,21 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('/api/trips')
-      .then(res => this.setState({ trips: res.data, filteredTrips: res.data }))
+    axios.get('/api/products')
+      .then(res => this.setState({ products: res.data }))
 
   }
   render() {
 
+    if(!this.state.products) return null
+
+
     return (
       <main>
         <h1 className="title is-1">Welcome to Price Finder</h1>
-        <ProductSearch />
+        <ProductSearch
+          {...this.state}
+        />
         <ProductsIndex />
         <ProductNew />
 
