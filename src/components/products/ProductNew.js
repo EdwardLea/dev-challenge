@@ -16,7 +16,6 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
                 placeholder="Name"
                 name="name"
                 onChange={handleChange}
-                value={data.name || ''}
               />
             </div>
           </div>
@@ -33,7 +32,6 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
               <textarea
                 name="description"
                 onChange={handleChange}
-                value={data.description || ''}
                 className={'textarea input is-info'}
                 placeholder="Tell us a little bit about the club...">
               </textarea>
@@ -44,7 +42,7 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
 
 
       <div>
-        <button className="button is-medium is-fullwidth is-dark">Submit</button>
+        <button className="button is-medium is-dark">Submit</button>
       </div>
     </form>
   )
