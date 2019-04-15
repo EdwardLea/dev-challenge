@@ -35,7 +35,9 @@ class App extends React.Component {
         <ProductSearch
           {...this.state}
         />
-        <ProductsIndex />
+        <ProductsIndex
+          {...this.state}
+        />
         <ProductNew />
 
       </main>

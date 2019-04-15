@@ -13,8 +13,8 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
             <div className="control">
               <input
                 className={'input is-info'}
-                placeholder="Name"
-                name="name"
+                placeholder="Supplier"
+                name="supplier"
                 onChange={handleChange}
               />
             </div>
@@ -29,12 +29,30 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <textarea
-                name="description"
+              <input
+                className='input is-info'
+                placeholder="Product"
+                name="product"
                 onChange={handleChange}
-                className={'textarea input is-info'}
-                placeholder="Tell us a little bit about the club...">
-              </textarea>
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="field is-horizontal">
+        <div className="field-label is-normal">
+          <label className="label">Price</label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
+              <input
+                className='input is-info'
+                placeholder="Price"
+                name="price"
+                onChange={handleChange}
+              />
             </div>
           </div>
         </div>

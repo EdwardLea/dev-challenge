@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductIndex = ({ handleChange }) => {
+const ProductIndex = ({ products, handleChange }) => {
 
   return (
     <table className="table">
@@ -10,15 +10,24 @@ const ProductIndex = ({ handleChange }) => {
           <th>Supplier</th>
           <th>Product</th>
           <th>Price</th>
+          <th>Edit</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>x</td>
-          <td>xxxx</td>
-          <td>xxxx</td>
-          <td>xxxx</td>
-        </tr>
+        {products
+          .map((product, i) => {
+            return  (
+              <tr key={i}>
+                <td>{i+1}</td>
+                <td>{product.supplier} <input value={product.supplier}></input></td>
+                <td> {product.product} <input value={product.product}></input></td>
+                <td> {product.product} <input value={product.price}></input></td>
+                <td><button>Edit</button></td>
+              </tr>
+
+            )
+
+          })}
       </tbody>
     </table>
   )
