@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
+import { withRouter } from 'react-router-dom'
+
+
 import 'bulma'
 import './style.scss'
 
@@ -61,7 +64,6 @@ class App extends React.Component {
       .post('/api/products', this.state.data)
       .then(res => this.setState({ products: res.data }))
       .catch((err) => console.log(err))
-
   }
 
   editSubmit(e) {
@@ -69,11 +71,12 @@ class App extends React.Component {
     console.log(this.state.data._id)
     axios
       .put(`/api/products/${this.state.data._id}`, this.state.data)
-      // .then(res => this.setState({ products: res.data }))
-      // .then(() => this.props.history.push('/'))
+      .then(res => this.setState({ products: res.data, data: {
+        supplier: '',
+        product: '',
+        price: 0
+      } }))
       .catch((err) => console.log(err))
-    // return this.setState({errors: err.response.data})
-
   }
 
   render() {

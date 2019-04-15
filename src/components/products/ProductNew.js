@@ -22,7 +22,6 @@ const ProductNew = ({ handleChange, handleSubmit, data, editSubmit }) => {
           </div>
         </div>
       </div>
-
       <div className="field is-horizontal">
         <div className="field-label is-normal">
           <label className="label">Product</label>
@@ -60,8 +59,6 @@ const ProductNew = ({ handleChange, handleSubmit, data, editSubmit }) => {
           </div>
         </div>
       </div>
-
-
       <div>
         <button className="button is-medium is-dark" onClick={handleSubmit}>Submit</button>
         <button className="button is-medium is-dark" onClick={editSubmit}>Edit</button>

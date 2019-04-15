@@ -1,7 +1,6 @@
 const Product = require('../models/product')
 
 function indexRoute(req, res, next) {
-  console.log(req.params)
   Product
     .find()
     .then(products => {
@@ -18,7 +17,7 @@ function indexRoute(req, res, next) {
 function createRoute(req, res, next) {
   Product
     .create(req.body)
-    .find()
+    .then(() => Product.find())
     .then(products => res.status(201).json(products))
     .catch(next)
 }
@@ -28,7 +27,7 @@ function updateRoute(req, res, next) {
     .findById(req.params.id)
     .then(product => product.set(req.body))
     .then(product => product.save())
-    .find()
+    .then(() => Product.find())
     .then(products => res.status(200).json(products))
     .catch(next)
 }
