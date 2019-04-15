@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProductNew = ({ handleChange, handleSubmit, data }) => {
+const ProductNew = ({ handleChange, handleSubmit, data, editSubmit }) => {
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="field is-horizontal">
         <div className="field-label is-normal">
           <label className="label">Supplier</label>
@@ -15,6 +15,7 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
                 className={'input is-info'}
                 placeholder="Supplier"
                 name="supplier"
+                value={data.supplier}
                 onChange={handleChange}
               />
             </div>
@@ -33,6 +34,7 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
                 className='input is-info'
                 placeholder="Product"
                 name="product"
+                value={data.product}
                 onChange={handleChange}
               />
             </div>
@@ -51,6 +53,7 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
                 className='input is-info'
                 placeholder="Price"
                 name="price"
+                value={data.price}
                 onChange={handleChange}
               />
             </div>
@@ -60,7 +63,8 @@ const ProductNew = ({ handleChange, handleSubmit, data }) => {
 
 
       <div>
-        <button className="button is-medium is-dark">Submit</button>
+        <button className="button is-medium is-dark" onClick={handleSubmit}>Submit</button>
+        <button className="button is-medium is-dark" onClick={editSubmit}>Edit</button>
       </div>
     </form>
   )

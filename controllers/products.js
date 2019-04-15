@@ -16,10 +16,10 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
-  req.body.user = req.currentUser
   Product
     .create(req.body)
-    .then(product => res.status(201).json(product))
+    .find()
+    .then(products => res.status(201).json(products))
     .catch(next)
 }
 
@@ -28,7 +28,8 @@ function updateRoute(req, res, next) {
     .findById(req.params.id)
     .then(product => product.set(req.body))
     .then(product => product.save())
-    .then(product => res.status(200).json(product))
+    .find()
+    .then(products => res.status(200).json(products))
     .catch(next)
 }
 

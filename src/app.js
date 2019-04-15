@@ -16,7 +16,25 @@ class App extends React.Component {
 
     this.state = {
 
+      data: {
+        supplier: '',
+        product: '',
+        price: 0
+      }
+
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.editSubmit = this.editSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  filteredProducts() {
+    const re = new RegExp(this.state.products, 'i')
+    if(!this.state.filter.supplier && !this.state.filter.supplier) return this.state.products
+    return this.state.products.filter(product => {
+      return re.test(product.location) && (this.state.filter.supplier === 'All' || product.product === this.state.filter.product)
+    })
   }
 
   componentDidMount(){
@@ -24,6 +42,40 @@ class App extends React.Component {
       .then(res => this.setState({ products: res.data }))
 
   }
+
+  handleChange({ target: { name, value } }) {
+    const data = {...this.state.data, [name]: value }
+    const errors = { ...this.state.errors, [name]: '' }
+    this.setState({ data, errors })
+  }
+
+  handleEdit({target: { value } }){
+    const data = this.state.products.find(product => product._id === value)
+    this.setState({ data })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log(this.state.data)
+    axios
+      .post('/api/products', this.state.data)
+      .then(res => this.setState({ products: res.data }))
+      .catch((err) => console.log(err))
+
+  }
+
+  editSubmit(e) {
+    e.preventDefault()
+    console.log(this.state.data._id)
+    axios
+      .put(`/api/products/${this.state.data._id}`, this.state.data)
+      // .then(res => this.setState({ products: res.data }))
+      // .then(() => this.props.history.push('/'))
+      .catch((err) => console.log(err))
+    // return this.setState({errors: err.response.data})
+
+  }
+
   render() {
 
     if(!this.state.products) return null
@@ -37,8 +89,14 @@ class App extends React.Component {
         />
         <ProductsIndex
           {...this.state}
+          handleEdit={this.handleEdit}
         />
-        <ProductNew />
+        <ProductNew
+          {...this.state}
+          handleChange={this.handleChange}
+          editSubmit={this.editSubmit}
+          handleSubmit={this.handleSubmit}
+        />
 
       </main>
     )
