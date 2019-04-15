@@ -20,7 +20,7 @@ function updateRoute(req, res, next) {
     .findById(req.params.id)
     .then(product => product.set(req.body))
     .then(product => product.save())
-    .then(product => product.status(200).json(product))
+    .then(product => res.status(200).json(product))
     .catch(next)
 }
 
