@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const routes = require('./config/routes')
+
 const app = express()
 
 mongoose.connect('mongodb://localhost/jdlt')
