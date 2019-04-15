@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
-  supplier: { type: String, required: 'Please give a supplier name' },
-  product: { type: String, required: 'Please give a product name' },
-  price: { type: Number, required: 'Please give a product price' }
+  supplier: { type: String, required: true },
+  product: { type: String, required: true },
+  price: { type: Number, required: true }
 })
 
 module.exports = mongoose.model('Product', productSchema)

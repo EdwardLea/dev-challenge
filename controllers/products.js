@@ -1,8 +1,16 @@
 const Product = require('../models/product')
 
 function indexRoute(req, res, next) {
+  console.log(req.params)
   Product
     .find()
+    .then(products => {
+      return products.filter(product => {
+        return product.supplier === (req.query.supplier || product.supplier) &&
+          product.product === (req.query.product || product.product)
+      }
+      )
+    } )
     .then(products => res.status(200).json(products))
     .catch(next)
 }
