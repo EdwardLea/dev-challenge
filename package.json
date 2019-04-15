@@ -4,6 +4,10 @@
   "description": "JDLT developer technical challenge",
   "main": "index.html",
   "scripts": {
+    "serve": "webpack-dev-server --mode=development",
+    "build": "webpack -p",
+    "start": "node index",
+    "seed": "node db/seeds",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
