@@ -2,16 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-import { withRouter } from 'react-router-dom'
-
-
-import 'bulma'
-import './style.scss'
-
 import ProductSearch from './components/products/ProductSearch'
 import ProductsIndex from './components/products/ProductsIndex'
 
-class App extends React.Component {
+class Dashboard extends React.Component {
   constructor(){
     super()
 
@@ -73,11 +67,16 @@ class App extends React.Component {
     console.log(this.state.data)
     axios
       .post('/api/products', this.state.data)
-      .then(res => this.setState({ products: res.data, data: {
-        supplier: '',
-        product: '',
-        price: 0
-      } }))      .catch((err) => console.log(err))
+      .then(res => this.setState({
+        products: res.data,
+        data: {
+          supplier: '',
+          product: '',
+          price: 0
+        }
+      })
+      )
+      .catch((err) => console.log(err))
   }
 
   editSubmit(e) {
@@ -96,9 +95,7 @@ class App extends React.Component {
   }
 
   render() {
-
     if(!this.state.products) return null
-
 
     return (
       <main>
@@ -119,7 +116,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-)
+export default Dashboard

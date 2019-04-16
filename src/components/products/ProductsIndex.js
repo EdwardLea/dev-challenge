@@ -1,6 +1,7 @@
 import React from 'react'
+import ProductNew from './ProductNew'
 
-const ProductIndex = ({ products, handleEdit, handleDelete, handleChange, handleSubmit, data }) => {
+const ProductIndex = ({ products, handleEdit, editSubmit, handleDelete, handleChange, handleSubmit, data, editing }) => {
 
   return (
     <table className="table">
@@ -20,46 +21,55 @@ const ProductIndex = ({ products, handleEdit, handleDelete, handleChange, handle
             return  (
               <tr key={i}>
                 <td>{i+1}</td>
-                <td>{product.supplier} </td>
-                <td> {product.product} </td>
-                <td> {product.price} </td>
-                <td><button value={product._id} onClick={handleEdit}>Edit</button></td>
+                <td>
+                  {product._id !== editing && (
+                    product.supplier
+                  )}
+                  {product._id === editing && (
+                    <input
+                      className={product._id === editing ? 'show' : 'hide'}
+                      onChange={handleChange}
+                      value={data.supplier || product.supplier}
+                      name="supplier"
+                    />
+                  )}
+                </td>
+                <td>
+                  {product._id !== editing && (
+                    product.product
+                  )}
+                  {product._id === editing && (
+                    <input
+                      className={product._id === editing ? 'show' : 'hide'}
+                      onChange={handleChange}
+                      value={data.product || product.product}
+                      name="product"
+                    />
+                  )}
+                </td>
+                <td>
+                  {product._id !== editing && (
+                    product.price
+                  )}
+                  {product._id === editing && (
+                    <input
+                      className={product._id === editing ? 'show' : 'hide'}
+                      onChange={handleChange}
+                      value={data.price || product.price}
+                      name="price"
+                    />
+                  )}
+                </td>
+                <td><button value={product._id} onClick={product._id === editing ? editSubmit : handleEdit}>Edit</button></td>
                 <td><button value={product._id} onClick={handleDelete}>Delete</button></td>
               </tr>
-
             )
-
           })}
-        <td>New</td>
-        <td>
-          <input
-            placeholder="Supplier"
-            name="supplier"
-            value={data.supplier}
-            onChange={handleChange}
-          />
-        </td>
-        <td>
-          <input
-            placeholder="Product"
-            name="product"
-            value={data.product}
-            onChange={handleChange}
-          />
-        </td>
-        <td>
-          <input
-            placeholder="Price"
-            name="price"
-            value={data.price}
-            onChange={handleChange}
-          />
-        </td>
-
-        <td colSpan='2' >
-          <button onClick={handleSubmit}>Submit</button>
-        </td>
-
+        <ProductNew
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          data={data}
+        />
       </tbody>
     </table>
   )
