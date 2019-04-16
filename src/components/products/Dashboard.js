@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-import ProductSearch from './components/products/ProductSearch'
-import ProductsIndex from './components/products/ProductsIndex'
+import ProductSearch from './ProductSearch'
+import ProductsIndex from './ProductsIndex'
 
 class Dashboard extends React.Component {
   constructor(){
