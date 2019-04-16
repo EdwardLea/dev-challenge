@@ -36,7 +36,8 @@ function deleteRoute(req, res, next) {
   Product
     .findById(req.params.id)
     .then(product => product.remove())
-    .then(() => res.sendStatus(204))
+    .then(() => Product.find())
+    .then(products => res.status(200).json(products))
     .catch(next)
 }
 

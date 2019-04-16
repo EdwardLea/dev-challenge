@@ -28,6 +28,7 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.editSubmit = this.editSubmit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -57,13 +58,23 @@ class App extends React.Component {
     this.setState({ data })
   }
 
+  handleDelete({target: { value } }){
+    axios
+      .delete(`/api/products/${value}`)
+      .then(res => this.setState({ products: res.data }))
+      .catch(err => this.setState({ errors: err.response }))
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     console.log(this.state.data)
     axios
       .post('/api/products', this.state.data)
-      .then(res => this.setState({ products: res.data }))
-      .catch((err) => console.log(err))
+      .then(res => this.setState({ products: res.data, data: {
+        supplier: '',
+        product: '',
+        price: 0
+      } }))      .catch((err) => console.log(err))
   }
 
   editSubmit(e) {
@@ -93,6 +104,10 @@ class App extends React.Component {
         <ProductsIndex
           {...this.state}
           handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+
         />
         <ProductNew
           {...this.state}
