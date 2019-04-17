@@ -11,15 +11,15 @@ $ yarn
 
 ## Run the application
 
-* Run command:
-```
-$ yarn seed
-```
-* Followed by:
+* To open connection to MongoDB database:
 ```
 $ mongod
 ```
-* Followed by:
+* To seed the database:
+```
+$ yarn seed
+```
+* To start the server:
 ```
 $ yarn start
 ```
@@ -27,7 +27,6 @@ $ yarn start
 
 # Technologies
 * JavaScript, Node.js, Express.js, MongoDB, Mongoose, Webpack, Yarn, Babel, React, Axios, Git, GitHub, Bulma, Sass, Mocha, Chai, Supertest.
-
 
 # Process
 I started developing the application by creating the backend Express server and MongoDB NoSQL database. Mongoose was used to create the database schema for products.
@@ -54,7 +53,7 @@ Basic automated testing was carried out for the index and create api routes.
 
 1. Initial testing for the index and create api routes has been carried out. Testing should be extended to include the other routes; update and delete.
 
-2. GraphQL is an api query language that has recently become very popular with modern applications. Although it's a new technology to me, I would have liked to implement this to improve my understanding of GraphQL. Given more time I would have replaced the RESTful routes with a GraphQL api.
+2. GraphQL is an API query language that has recently become very popular with modern applications. Although it's a new technology to me, I would have liked to implement this to improve my understanding of GraphQL. Given more time I would have replaced the RESTful routes with a GraphQL API.
 
 3. Although a very simple application, the management of state within the React app became more difficult as components become more nested. To improve state management I would like to implement Redux as a state management tool.
 
