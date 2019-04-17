@@ -1,11 +1,10 @@
 import React from 'react'
 
-const ProductSearch = ({products, handleChange }) => {
-
+const ProductSearch = ({products, handleSearch }) => {
 
   return (
     <div className="columns">
-      <div className="column is-3">
+      <div className="column is-2">
         <div className="field">
           <div className="control">
             <label className="label">
@@ -14,8 +13,9 @@ const ProductSearch = ({products, handleChange }) => {
             <select
               className="select"
               name="supplier"
-              onChange={handleChange}
+              onChange={handleSearch}
             >
+              <option value=''> All </option>
               {products
                 .map(product => product.supplier)
                 .filter((product,i) => products.map(product => product.supplier).indexOf(product) === i)
@@ -26,15 +26,16 @@ const ProductSearch = ({products, handleChange }) => {
           </div>
         </div>
       </div>
-      <div className="column is-3">
+      <div className="column is-2">
         <div className="field">
           <div className="control">
             <label className="label">Find by Product</label>
             <select
               className="select"
               name="product"
-              onChange={handleChange}
+              onChange={handleSearch}
             >
+              <option value=''> All </option>
               {products
                 .map(product => product.product)
                 .filter((product,i) => products.map(product => product.product).indexOf(product) === i)

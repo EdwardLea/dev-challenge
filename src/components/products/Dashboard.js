@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import axios from 'axios'
 
 import ProductSearch from './ProductSearch'
@@ -10,15 +9,21 @@ class Dashboard extends React.Component {
     super()
 
     this.state = {
-
       data: {
         supplier: '',
         product: '',
         price: 0
       },
+      filter: {
+        supplier: '',
+        product: ''
+      },
       editing: ''
 
     }
+    // this.queryProducts = this.queryProducts.bind(this)
+    this.filteredProducts = this.filteredProducts.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
@@ -26,18 +31,38 @@ class Dashboard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // queryProducts(){
+  //   axios.get('/api/products',
+  //     {
+  //       params: {
+  //         supplier: this.state.filter.supplier,
+  //         product: this.state.filter.product
+  //       }
+  //     }
+  //   )
+  //     .then(res => this.setState({ products: res.data }))
+  // }
+
+  handleSearch({ target: { name, value } }){
+    const filter = {...this.state.filter, [name]: value }
+    this.setState({ filter })
+  }
+
   filteredProducts() {
-    const re = new RegExp(this.state.products, 'i')
     if(!this.state.filter.supplier && !this.state.filter.supplier) return this.state.products
     return this.state.products.filter(product => {
-      return re.test(product.location) && (this.state.filter.supplier === 'All' || product.product === this.state.filter.product)
+      return (this.state.filter.supplier === '' || product.supplier === this.state.filter.supplier) && (this.state.filter.product === '' || product.product === this.state.filter.product)
     })
   }
+
+  // componentDidMount(){
+  //   axios.get('/api/products/list')
+  //     .then(res => this.setState({ dropdown: res.data }))
+  // }
 
   componentDidMount(){
     axios.get('/api/products')
       .then(res => this.setState({ products: res.data }))
-
   }
 
   handleChange({ target: { name, value } }) {
@@ -47,9 +72,6 @@ class Dashboard extends React.Component {
   }
 
   handleEdit(e){
-    console.dir(e.currentTarget.parentElement.parentElement)
-
-
     const data = this.state.products.find(product => product._id === e.target.value)
     const editing = e.target.value
     this.setState({ data, editing })
@@ -102,15 +124,20 @@ class Dashboard extends React.Component {
         <h1 className="title is-1">Welcome to Price Finder</h1>
         <ProductSearch
           {...this.state}
+          queryProducts = {this.queryProducts}
+          handleSearch = {this.handleSearch}
         />
-        <ProductsIndex
-          {...this.state}
-          handleEdit={this.handleEdit}
-          handleDelete={this.handleDelete}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          editSubmit={this.editSubmit}
-        />
+        {this.state.products && (
+          <ProductsIndex
+            {...this.state}
+            filteredProducts={this.filteredProducts}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            editSubmit={this.editSubmit}
+          />
+        )}
       </main>
     )
   }

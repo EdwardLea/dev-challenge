@@ -1,5 +1,21 @@
 const Product = require('../models/product')
 
+function productRoute(req, res, next) {
+  Product
+    .find()
+    .then(products => {
+      return products.map(product => {
+        return {
+          supplier: product.supplier,
+          product: product.product
+        }
+      }
+      )
+    } )
+    .then(products => res.status(200).json(products))
+    .catch(next)
+}
+
 function indexRoute(req, res, next) {
   Product
     .find()
@@ -42,6 +58,7 @@ function deleteRoute(req, res, next) {
 }
 
 module.exports = {
+  productlist: productRoute,
   index: indexRoute,
   create: createRoute,
   update: updateRoute,
