@@ -2,12 +2,12 @@
 
 const Product = require('../../models/product')
 
-const { gemsData } = require('../mock_data')
+const { productsData } = require('../mock_data')
 
-describe('GET /gems', () => {
+describe('GET /products', () => {
   beforeEach(done => {
     Product.remove({})
-      .then(() => Product.create(gemsData))
+      .then(() => Product.create(productsData))
       .then(() => done())
   })
 
@@ -19,41 +19,33 @@ describe('GET /gems', () => {
       })
   })
 
-  it('should return an array', (done) => {
-    api.get('/api/gems')
+  it('should return an array of products', (done) => {
+    api.get('/api/products')
       .end((err, res) => {
         expect(res.body).to.be.an('array')
-        res.body.forEach(gem => {
-          expect(gem).to.include.keys([
-            'name',
-            'image',
-            'description',
-            'category',
-            'location',
-            'address',
-            'comments'
+        res.body.forEach(product => {
+          expect(product).to.include.keys([
+            'supplier',
+            'product',
+            'price'
           ])
         })
         done()
       })
   })
 
-  // it('should return the correct data', (done) => {
-  //   api
-  //     .get('/api/gems')
-  //     .end((err, res) => {
-  //       res.body.forEach((gem, i) => {
-  //         expect(gem.name).to.eq(gemsData[i].name)
-  //         expect(gem.image).to.eq(gemsData[i].image)
-  //         expect(gem.description).to.eq(gemsData[i].description)
-  //         expect(gem.category).to.eq(gemsData[i].category)
-  //         expect(gem.location).to.deep.eq(gemsData[i].location)
-  //         expect(gem.address).to.eq(gemsData[i].address)
-  //         expect(gem.comments).to.eq(gemsData[i].comments)
-  //       })
-  //       done()
-  //     })
-  // })
+  it('should return the correct data', (done) => {
+    api
+      .get('/api/products')
+      .end((err, res) => {
+        res.body.forEach((product, i) => {
+          expect(product.supplier).to.eq(productsData[i].supplier)
+          expect(product.product).to.eq(productsData[i].product)
+          expect(product.price).to.eq(productsData[i].price)
+        })
+        done()
+      })
+  })
 
 
   after(done => {
