@@ -15,12 +15,12 @@ const ProductIndex = (
     <table className="table">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Supplier</th>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th className="has-text-dark">#</th>
+          <th className="has-text-dark">Supplier</th>
+          <th className="has-text-dark">Product</th>
+          <th className="has-text-dark">Price (£)</th>
+          <th className="has-text-dark">Edit</th>
+          <th className="has-text-dark">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +35,7 @@ const ProductIndex = (
                   )}
                   {product._id === editing && (
                     <input
-                      className={product._id === editing ? 'show' : 'hide'}
+                      className="input is-small"
                       onChange={handleChange}
                       value={data.supplier || product.supplier}
                       name="supplier"
@@ -48,7 +48,7 @@ const ProductIndex = (
                   )}
                   {product._id === editing && (
                     <input
-                      className={product._id === editing ? 'show' : 'hide'}
+                      className="input is-small"
                       onChange={handleChange}
                       value={data.product || product.product}
                       name="product"
@@ -61,15 +61,23 @@ const ProductIndex = (
                   )}
                   {product._id === editing && (
                     <input
-                      className={product._id === editing ? 'show' : 'hide'}
+                      className="input is-small"
                       onChange={handleChange}
                       value={data.price || product.price}
                       name="price"
                     />
                   )}
                 </td>
-                <td><button value={product._id} onClick={product._id === editing ? editSubmit : handleEdit}>Edit</button></td>
-                <td><button value={product._id} onClick={handleDelete}>Delete</button></td>
+                <td>
+                  <button
+                    className="button is-small is-dark"
+                    value={product._id}
+                    onClick={product._id === editing ? editSubmit : handleEdit}>
+                    {product._id === editing ? 'Submit': 'Edit'}
+                  </button>
+                </td>
+                <td>
+                  <button className="button is-small is-dark" value={product._id} onClick={handleDelete}>Delete</button></td>
               </tr>
             )
           })}

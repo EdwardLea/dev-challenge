@@ -47,7 +47,6 @@ describe('GET /products', () => {
       })
   })
 
-
   after(done => {
     Product.remove({})
       .then(() => done())

@@ -8,6 +8,7 @@ const ProductNew = ({ editing, handleChange, handleSubmit, data }) => {
       <td>New</td>
       <td>
         <input
+          className="input is-small"
           placeholder="Supplier"
           name="supplier"
           value={data.supplier}
@@ -16,6 +17,7 @@ const ProductNew = ({ editing, handleChange, handleSubmit, data }) => {
       </td>
       <td>
         <input
+          className="input is-small"
           placeholder="Product"
           name="product"
           value={data.product}
@@ -24,6 +26,7 @@ const ProductNew = ({ editing, handleChange, handleSubmit, data }) => {
       </td>
       <td>
         <input
+          className="input is-small"
           placeholder="Price"
           name="price"
           value={data.price}
@@ -31,7 +34,12 @@ const ProductNew = ({ editing, handleChange, handleSubmit, data }) => {
         />
       </td>
       <td colSpan='2'>
-        <button onClick={handleSubmit}>Submit</button>
+        <button
+          onClick={handleSubmit}
+          className="button is-small is-dark"
+        >
+          Submit
+        </button>
       </td>
     </tr>
   )

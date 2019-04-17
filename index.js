@@ -6,8 +6,6 @@ const {port, dbURI } = require('./config/environment')
 
 const app = express()
 
-console.log(dbURI)
-
 mongoose.connect(dbURI)
 
 app.use((req, res, next) => {

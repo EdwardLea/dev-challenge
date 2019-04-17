@@ -5,7 +5,6 @@ const Product = require('../../models/product')
 const { productsData } = require('../mock_data')
 
 describe('POST/products', () => {
-
   beforeEach(done => {
     Product.remove({})
       .then(() => done())
@@ -32,8 +31,7 @@ describe('POST/products', () => {
         done()
       })
   })
-  //
-  //
+
   it('should return the correct product data', done => {
     api
       .post('/api/products')
@@ -48,7 +46,6 @@ describe('POST/products', () => {
       })
   })
 })
-
 
 after(done => {
   Product.remove({})

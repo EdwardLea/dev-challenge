@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
       },
       editing: ''
     }
-    
+
     this.filteredProducts = this.filteredProducts.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -103,7 +103,7 @@ class Dashboard extends React.Component {
 
     return (
       <main>
-        <h1 className="title is-1">Welcome to Price Finder</h1>
+        <h1 className="title is-1 has-text-dark">Welcome to Product Datastore</h1>
         <ProductSearch
           {...this.state}
           queryProducts = {this.queryProducts}
