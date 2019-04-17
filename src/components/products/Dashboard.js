@@ -49,7 +49,6 @@ class Dashboard extends React.Component {
 
   handleEdit(e){
     const data = this.state.products.find(product => product._id === e.target.value)
-    console.log(data)
     const editing = e.target.value
     this.setState({ data, editing })
   }
@@ -63,7 +62,6 @@ class Dashboard extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state.data)
     axios
       .post('/api/products', this.state.data)
       .then(res => this.setState({

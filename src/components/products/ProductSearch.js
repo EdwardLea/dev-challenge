@@ -3,7 +3,6 @@ import React from 'react'
 const ProductSearch = ({products, handleSearch }) => {
 
   return (
-
     <div className="search-area">
       <label className="label has-text-dark">
         <strong>Find by Supplier</strong>
