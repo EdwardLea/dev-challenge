@@ -19,8 +19,8 @@ class Dashboard extends React.Component {
         product: ''
       },
       editing: ''
-
     }
+    
     this.filteredProducts = this.filteredProducts.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -36,7 +36,6 @@ class Dashboard extends React.Component {
   }
 
   filteredProducts() {
-    // if(!this.state.filter.supplier && !this.state.filter.supplier) return this.state.products
     return this.state.products.filter(product => {
       return (this.state.filter.supplier === '' || product.supplier === this.state.filter.supplier) && (this.state.filter.product === '' || product.product === this.state.filter.product)
     })

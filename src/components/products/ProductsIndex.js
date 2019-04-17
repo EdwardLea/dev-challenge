@@ -1,7 +1,15 @@
 import React from 'react'
 import ProductNew from './ProductNew'
 
-const ProductIndex = ({ products, filteredProducts, handleEdit, editSubmit, handleDelete, handleChange, handleSubmit, data, editing }) => {
+const ProductIndex = (
+  { filteredProducts,
+    handleEdit,
+    editSubmit,
+    handleDelete,
+    handleChange,
+    handleSubmit,
+    data,
+    editing }) => {
 
   return (
     <table className="table">
