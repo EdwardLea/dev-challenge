@@ -31,7 +31,7 @@ $ yarn start
 # Process
 I started developing the application by creating the backend Express server and MongoDB NoSQL database. Mongoose was used to create the database schema for products.
 
-Initially a single index route was created to access records held in the database. The index route took two parameters (if provided), and returned only records which matched the supplier and product. To test this seeds data was added to populate the database with initial data.
+Initially a single index route was created to access records held in the database. The index route takes two parameters (if provided), and returned only records which matched the supplier and product. To test this seeds data was added to populate the database with initial data.
 
 Initial testing of the api route was carried out using Insomnia.
 
@@ -47,13 +47,15 @@ As records could be added and updated the dropdown lists was changed to populate
 
 Basic automated testing was carried out for the index and create api routes.
 
+A basic graphQL server has been added to the Express server. This allows queries to be made to obtain product information. NB: This section of code has been commented out as not all routes have been set up to support frontend functionality.
+
 # If I had more time...
 
 ## Future features
 
 1. Initial testing for the index and create api routes has been carried out. Testing should be extended to include the other routes; update and delete.
 
-2. GraphQL is an API query language that has recently become very popular with modern applications. Although it's a new technology to me, I would have liked to implement this to improve my understanding of GraphQL. Given more time I would have replaced the RESTful routes with a GraphQL API.
+2. GraphQL is an API query language that has recently become very popular with modern applications. Although it's a new technology to me, I would have liked to implement this fully in the frontend and backend to improve my understanding of GraphQL. Given more time I would have replaced the RESTful routes with a GraphQL API.
 
 3. Although a very simple application, the management of state within the React app became more difficult as components become more nested. To improve state management I would like to implement Redux as a state management tool.
 
