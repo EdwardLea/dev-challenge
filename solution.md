@@ -83,8 +83,10 @@ Basic automated testing was carried out for the index and create api routes.
 
 ## Future features
 
-1. Initial testing for the index and create api routes has been carried out. Testing should be extended to include the other routes, update and delete.
+1. Initial testing for the index and create api routes has been carried out. Testing should be extended to include the other routes; update and delete.
 
-2. Graphql is a api query language that has recently become very popular with modern applicaition. Although it's a new technology to me I wanted to implement to improve my understanding of Graphql . If I had more time I would have replaced the RESTful routes with a Graphql api.
+2. GraphQL is an api query language that has recently become very popular with modern applications. Although it's a new technology to me, I would have liked to implement this to improve my understanding of GraphQL. Given more time I would have replaced the RESTful routes with a GraphQL api.
 
-3. Although a very simple application the management of state within the React app became more difficult as components become more nested. To improve state management I would like to implement Redux as a statement tool.
+3. Although a very simple application, the management of state within the React app became more difficult as components become more nested. To improve state management I would like to implement Redux as a state management tool.
+
+4. As there are currently only a small number of records within the database, all records are added into state on loading the application. As the number of records increases I would only load records that the user has queried. This would be a relatively simple update to the frontend app, as the backend index route already allows for query parameters to be included in requests.
