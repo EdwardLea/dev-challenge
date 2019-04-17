@@ -4,23 +4,22 @@ const Product = require('../../models/product')
 
 const { productsData } = require('../mock_data')
 
-describe('GET /products', () => {
+describe('POST/products', () => {
+
   beforeEach(done => {
     Product.remove({})
-      .then(() => Product.create(productsData))
       .then(() => done())
   })
 
-  it('should return a 200 response', (done) => {
-    api.get('/api/products')
-      .end((err, res) => {
-        expect(res.status).to.eq(200)
-        done()
-      })
+  it('should return a 201 response', (done) => {
+    api.post('/api/products')
+      .send(productsData[0])
+      .expect(201, done)
   })
 
   it('should return an array of products', (done) => {
-    api.get('/api/products')
+    api.post('/api/products')
+      .send(productsData[0])
       .end((err, res) => {
         expect(res.body).to.be.an('array')
         res.body.forEach(product => {
@@ -33,10 +32,12 @@ describe('GET /products', () => {
         done()
       })
   })
-
-  it('should return the correct product data', (done) => {
+  //
+  //
+  it('should return the correct product data', done => {
     api
-      .get('/api/products')
+      .post('/api/products')
+      .send(productsData[0])
       .end((err, res) => {
         res.body.forEach((product, i) => {
           expect(product.supplier).to.eq(productsData[i].supplier)
@@ -46,10 +47,10 @@ describe('GET /products', () => {
         done()
       })
   })
+})
 
 
-  after(done => {
-    Product.remove({})
-      .then(() => done())
-  })
+after(done => {
+  Product.remove({})
+    .then(() => done())
 })

@@ -16,6 +16,15 @@ const productsData = [
   }
 ]
 
+const productData = [
+  {
+    supplier: 'New Co Ltd',
+    product: 'New wongle',
+    price: 10
+  }
+]
+
 module.exports = {
-  productsData
+  productsData,
+  productData
 }
