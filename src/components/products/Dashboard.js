@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
       editing: ''
 
     }
-    // this.queryProducts = this.queryProducts.bind(this)
     this.filteredProducts = this.filteredProducts.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -31,38 +30,16 @@ class Dashboard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // queryProducts(){
-  //   axios.get('/api/products',
-  //     {
-  //       params: {
-  //         supplier: this.state.filter.supplier,
-  //         product: this.state.filter.product
-  //       }
-  //     }
-  //   )
-  //     .then(res => this.setState({ products: res.data }))
-  // }
-
   handleSearch({ target: { name, value } }){
     const filter = {...this.state.filter, [name]: value }
     this.setState({ filter })
   }
 
   filteredProducts() {
-    if(!this.state.filter.supplier && !this.state.filter.supplier) return this.state.products
+    // if(!this.state.filter.supplier && !this.state.filter.supplier) return this.state.products
     return this.state.products.filter(product => {
       return (this.state.filter.supplier === '' || product.supplier === this.state.filter.supplier) && (this.state.filter.product === '' || product.product === this.state.filter.product)
     })
-  }
-
-  // componentDidMount(){
-  //   axios.get('/api/products/list')
-  //     .then(res => this.setState({ dropdown: res.data }))
-  // }
-
-  componentDidMount(){
-    axios.get('/api/products')
-      .then(res => this.setState({ products: res.data }))
   }
 
   handleChange({ target: { name, value } }) {
@@ -73,6 +50,7 @@ class Dashboard extends React.Component {
 
   handleEdit(e){
     const data = this.state.products.find(product => product._id === e.target.value)
+    console.log(data)
     const editing = e.target.value
     this.setState({ data, editing })
   }
@@ -114,6 +92,11 @@ class Dashboard extends React.Component {
       editing: ''
       }))
       .catch((err) => console.log(err))
+  }
+
+  componentDidMount(){
+    axios.get('/api/products')
+      .then(res => this.setState({ products: res.data }))
   }
 
   render() {
