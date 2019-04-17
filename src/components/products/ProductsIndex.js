@@ -72,12 +72,19 @@ const ProductIndex = (
                   <button
                     className="button is-small is-dark"
                     value={product._id}
-                    onClick={product._id === editing ? editSubmit : handleEdit}>
+                    onClick={product._id === editing ? editSubmit : handleEdit}
+                  >
                     {product._id === editing ? 'Submit': 'Edit'}
                   </button>
                 </td>
                 <td>
-                  <button className="button is-small is-dark" value={product._id} onClick={handleDelete}>Delete</button></td>
+                  <button
+                    className="button is-small is-dark"
+                    value={product._id}
+                    onClick={handleDelete}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             )
           })}

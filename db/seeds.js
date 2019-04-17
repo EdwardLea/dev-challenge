@@ -41,7 +41,7 @@ mongoose.connect('mongodb://localhost/jdlt', (err, db) => {
       ])
     })
 
-    .then(() => console.log('Database successfully seeded'))
+    .then(() => console.log('Database seeded'))
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close())
 })
