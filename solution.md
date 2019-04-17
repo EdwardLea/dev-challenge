@@ -47,7 +47,7 @@ As records could be added and updated the dropdown lists was changed to populate
 
 Basic automated testing was carried out for the index and create api routes.
 
-A basic graphQL server has been added to the Express server. This allows queries to be made to obtain product information. NB: This section of code has been commented out as not all routes have been set up to support frontend functionality.
+A basic graphQL server has been added to the backend. This allows queries to be made to obtain product information. NB: This section of code has been commented out as not all routes have been set up to support frontend functionality.
 
 # If I had more time...
 
